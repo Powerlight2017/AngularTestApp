@@ -1,0 +1,120 @@
+<mat-horizontal-stepper  #stepper="matStepper" [linear]="true" >
+    <!-- Step 1: Login and Password -->
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Step 1</ng-template>
+            <div>
+            <mat-form-field>
+              <mat-label>Login</mat-label>
+              <input matInput formControlName="login" required>
+              <mat-error *ngIf="firstFormGroup.controls['login'].errors && firstFormGroup.controls['login'].errors['required']">
+                Login is required.
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup.controls['login'].errors && firstFormGroup.controls['login'].errors['email']">
+                Login must be valid E-Mail.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" (input)="onPasswordInput()" required>
+                <mat-error *ngIf="firstFormGroup.controls['password'].errors && (firstFormGroup.controls['password'].touched || firstFormGroup.controls['password'].dirty) && !(firstFormGroup.controls['password'].errors['passwordStrength'])">
+                  Password is required.
+                </mat-error>
+                <mat-error *ngIf="firstFormGroup.controls['password'].errors && (firstFormGroup.controls['password'].errors['minlength'])">
+                  Password must be at least 6 characters long.
+                </mat-error>
+                <mat-error *ngIf="firstFormGroup.controls['password'].errors && !(firstFormGroup.controls['password'].errors['minlength']) && (firstFormGroup.controls['password'].errors['passwordStrength'])">
+                  <span>Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</span>
+                </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field >
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" formControlName="confirmPassword" (input)="onPasswordInput()" required>
+              @if (firstFormGroup && firstFormGroup.hasError('passwordMismatch')) {
+              <mat-error>
+                Passwords do not match.
+              </mat-error>
+            }
+            </mat-form-field>
+          </div>
+          <div class="agree-checkbox">
+            <mat-checkbox formControlName="agreeToWorkForFood" required>
+              Agree to work for food
+            </mat-checkbox>
+            <mat-error *ngIf="firstStepPressed && firstFormGroup.controls['agreeToWorkForFood'].errors && firstFormGroup.controls['agreeToWorkForFood'].errors['required']">
+                It is required!
+            </mat-error>
+          </div>
+          <div>
+            <button mat-button matStepperNext (click)="onFirstStepPressed()">Next Step</button>
+          </div>
+      </form>
+    </mat-step>
+  
+    <!-- Step 2: Country and Province -->
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Step 2</ng-template>
+
+        <div *ngIf="loadingCountries">Loading countries...</div>
+        <div *ngIf="errorLoadingCountries">Error loading countries. Please try again later.</div>
+        <div *ngIf="!loadingCountries && !errorLoadingCountries">
+        <div>
+          <mat-form-field appearance="fill">
+              <mat-label>Country</mat-label>
+              <mat-select formControlName="country" (selectionChange)="onCountryChange($event.value)" required>
+                <mat-option *ngFor="let country of countries" [value]="country.id">
+                  {{ country.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondFormGroup.controls['country'].errors && secondFormGroup.controls['country'].errors['required']">
+                Country is required field.
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill">
+              <mat-label>Province</mat-label>
+              <mat-select formControlName="province" required>
+                <mat-option *ngFor="let province of provinces" [value]="province.id">
+                  {{ province.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="secondFormGroup.controls['province'].errors && secondFormGroup.controls['province'].errors['required']">
+                Province is required field.
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="onSubmit()">Save</button>
+        </div>
+      </form>
+    <!-- Step 3: Registration result -->
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Result</ng-template>
+      <div *ngIf="registrationRequestPending">
+         Processing registration request.
+      </div>
+      <div *ngIf="!registrationRequestPending && (!registrationResult || (registrationResult && !registrationResult.success))">
+         Registration failed.
+
+         <ng-container *ngIf="registrationResult && registrationResult.errors && registrationResult.errors.length > 0">
+          <mat-error *ngFor="let regError of registrationResult.errors">
+            {{ regError.description }}
+          </mat-error>
+        </ng-container>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </div>
+      <div *ngIf="!registrationRequestPending && registrationResult && registrationResult.success">
+        Registration is complete!
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  

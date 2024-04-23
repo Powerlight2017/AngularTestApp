@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/components/user-registration/user-registration.component.css"],
+  "sourcesContent": [".mat-stepper-horizontal {\r\n    margin-top: 8px;\r\n  }\r\n  \r\n  .mat-mdc-form-field {\r\n    margin-top: 16px;\r\n  }\r\n  \r\n\r\n  .mat-mdc-form-field-error,.passsword-validation-error\r\n  {\r\n    font-size: 10px;\r\n    line-height: normal;\r\n  }\r\n\r\n  .passsword-validation-error{\r\n    width: 210px;\r\n    display: contents;\r\n  }\r\n\r\n  .agree-checkbox .mat-mdc-checkbox{\r\n    height: 0;\r\n  }\r\n\r\n\r\n  .mat-mdc-form-field {\r\n    width: 100%;\r\n}\r\n\r\n::ng-deep .mat-horizontal-stepper-header{\r\n    pointer-events: none !important;\r\n}\r\n"],
+  "mappings": ";AAAA,CAAC;AACG,cAAY;AACd;AAEA,CAAC;AACC,cAAY;AACd;AAGA,CAAC;AAAyB,CAAC;AAEzB,aAAW;AACX,eAAa;AACf;AAEA,CAN2B;AAOzB,SAAO;AACP,WAAS;AACX;AAEA,CAAC,eAAe,CAAC;AACf,UAAQ;AACV;AAGA,CArBC;AAsBC,SAAO;AACX;AAEA,UAAU,CAAC;AACP,kBAAgB;AACpB;",
+  "names": []
+}

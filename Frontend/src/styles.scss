@@ -1,0 +1,22 @@
+.basic-container {
+    padding: 30px;
+}
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+
+  body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 30px;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  

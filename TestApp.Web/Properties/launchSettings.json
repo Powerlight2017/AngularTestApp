@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TestApp.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "externalUrlConfiguration": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
