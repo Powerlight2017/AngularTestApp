@@ -1,0 +1,45 @@
+# Ignore all files in the bin and obj directories
+bin/
+obj/
+
+# Also ignore Visual Studio user specific files such as user preferences and settings
+*.user
+*.userosscache
+*.suo
+
+# Ignore the .vs directory which is used by Visual Studio for user-specific settings
+.vs/
+
+# Ignore NuGet cache files and packages
+packages/
+**/[Pp]ackages/*
+**/[Pp]ackages-cache/
+*.nupkg
+
+# Ignore Resharper cache files if Resharper is used
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Ignore Build outputs
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+
+# Ignore MSTest test Results
+TestResults/
+
+# Ignore backup files created by editors or IDEs
+*.[Bb]ak
+*.bak.*
+*.[Tt]mp
+*.tmp.*
+
+# Ignore log files
+*.log
+*.log.*
+
+# Ignore files and directories created by macOS
+.DS_Store
